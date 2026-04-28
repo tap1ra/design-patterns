@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design Patterns Visualizer</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div id="app">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h1>デザインパターン</h1>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-pattern="observer">
+          <span class="nav-icon">👀</span>
+          <span class="nav-text">オブザーバー</span>
+        </button>
+        <button class="nav-item" data-pattern="state">
+          <span class="nav-icon">🤖</span>
+          <span class="nav-text">ステート</span>
+        </button>
+        <button class="nav-item" data-pattern="strategy">
+          <span class="nav-icon">⚡️</span>
+          <span class="nav-text">ストラテジー</span>
+        </button>
+        <button class="nav-item" data-pattern="singleton">
+          <span class="nav-icon">💎</span>
+          <span class="nav-text">シングルトン</span>
+        </button>
+        <button class="nav-item" data-pattern="factory">
+          <span class="nav-icon">🏭</span>
+          <span class="nav-text">ファクトリ</span>
+        </button>
+        <button class="nav-item" data-pattern="command">
+          <span class="nav-icon">🎮</span>
+          <span class="nav-text">コマンド</span>
+        </button>
+        <button class="nav-item" data-pattern="decorator">
+          <span class="nav-icon">☕️</span>
+          <span class="nav-text">デコレーター</span>
+        </button>
+        <button class="nav-item" data-pattern="builder">
+          <span class="nav-icon">🛠️</span>
+          <span class="nav-text">ビルダー</span>
+        </button>
+        <button class="nav-item" data-pattern="facade">
+          <span class="nav-icon">🎬</span>
+          <span class="nav-text">ファサード</span>
+        </button>
+      </nav>
+    </aside>
+    <main class="main-content" id="main-content">
+      <!-- Pattern content will be rendered here -->
+    </main>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
