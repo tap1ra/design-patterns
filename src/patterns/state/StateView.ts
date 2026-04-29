@@ -1,4 +1,6 @@
 import { VendingMachine } from './State';
+import { applyCodeTab } from '../../utils/CodeViewer';
+import sourceCode from './State.ts?raw';
 
 export class StateView {
   private machine: VendingMachine;
@@ -56,6 +58,7 @@ export class StateView {
     `;
 
     this.bindEvents();
+    applyCodeTab(this.container, sourceCode);
   }
 
   private log(message: string) {

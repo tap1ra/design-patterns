@@ -1,4 +1,6 @@
 import { SettingsManager } from './Singleton';
+import { applyCodeTab } from '../../utils/CodeViewer';
+import sourceCode from './Singleton.ts?raw';
 
 export class SingletonView {
   private container: HTMLElement;
@@ -56,6 +58,7 @@ export class SingletonView {
     `;
 
     this.bindEvents();
+    applyCodeTab(this.container, sourceCode);
   }
 
   private log(message: string) {

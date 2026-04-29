@@ -1,5 +1,7 @@
 import { SimpleCoffee, MilkDecorator, WhipCreamDecorator, CaramelSyrupDecorator } from './Decorator';
 import type { Coffee } from './Decorator';
+import { applyCodeTab } from '../../utils/CodeViewer';
+import sourceCode from './Decorator.ts?raw';
 
 export class DecoratorView {
   private container: HTMLElement;
@@ -73,6 +75,7 @@ export class DecoratorView {
 
     this.bindEvents();
     this.updateUI();
+    applyCodeTab(this.container, sourceCode);
   }
 
   private log(message: string) {

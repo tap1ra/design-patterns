@@ -1,5 +1,7 @@
 import { ShoppingCart, CreditCardStrategy, HogePayStrategy, CryptoStrategy } from './Strategy';
 import type { PaymentStrategy } from './Strategy';
+import { applyCodeTab } from '../../utils/CodeViewer';
+import sourceCode from './Strategy.ts?raw';
 
 export class StrategyView {
   private cart: ShoppingCart;
@@ -65,6 +67,7 @@ export class StrategyView {
     `;
 
     this.bindEvents();
+    applyCodeTab(this.container, sourceCode);
   }
 
   private bindEvents() {

@@ -1,4 +1,6 @@
 import { HomeTheaterFacade } from './Facade';
+import { applyCodeTab } from '../../utils/CodeViewer';
+import sourceCode from './Facade.ts?raw';
 
 export class FacadeView {
   private container: HTMLElement;
@@ -111,6 +113,7 @@ export class FacadeView {
     this.container.appendChild(style);
 
     this.bindEvents();
+    applyCodeTab(this.container, sourceCode);
   }
 
   private log(message: string) {

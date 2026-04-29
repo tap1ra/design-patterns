@@ -1,4 +1,6 @@
 import { Director, GamingComputerBuilder, OfficeComputerBuilder } from './Builder';
+import { applyCodeTab } from '../../utils/CodeViewer';
+import sourceCode from './Builder.ts?raw';
 
 export class BuilderView {
   private container: HTMLElement;
@@ -82,6 +84,7 @@ export class BuilderView {
     `;
 
     this.bindEvents();
+    applyCodeTab(this.container, sourceCode);
   }
 
   private log(message: string) {

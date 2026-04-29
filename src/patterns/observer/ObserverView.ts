@@ -1,4 +1,6 @@
 import { NewsletterPublisher, Subscriber } from './Observer';
+import { applyCodeTab } from '../../utils/CodeViewer';
+import sourceCode from './Observer.ts?raw';
 
 export class ObserverView {
   private publisher: NewsletterPublisher;
@@ -57,6 +59,7 @@ export class ObserverView {
 
     this.bindEvents();
     this.renderSubscribers();
+    applyCodeTab(this.container, sourceCode);
   }
 
   private log(message: string) {

@@ -1,4 +1,6 @@
 import { SmartLight, RemoteControl, TurnOnLightCommand, TurnOffLightCommand, DimLightCommand } from './Command';
+import { applyCodeTab } from '../../utils/CodeViewer';
+import sourceCode from './Command.ts?raw';
 
 export class CommandView {
   private container: HTMLElement;
@@ -77,6 +79,7 @@ export class CommandView {
 
     this.bindEvents();
     this.updateUI();
+    applyCodeTab(this.container, sourceCode);
   }
 
   private log(message: string) {

@@ -1,5 +1,7 @@
 import { UIFactory, DarkThemeFactory, LightThemeFactory } from './Factory';
 import type { UIComponent } from './Factory';
+import { applyCodeTab } from '../../utils/CodeViewer';
+import sourceCode from './Factory.ts?raw';
 
 export class FactoryView {
   private container: HTMLElement;
@@ -50,6 +52,7 @@ export class FactoryView {
     `;
 
     this.bindEvents();
+    applyCodeTab(this.container, sourceCode);
   }
 
   private log(message: string) {
