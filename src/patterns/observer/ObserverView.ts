@@ -1,5 +1,5 @@
 import { NewsletterPublisher, Subscriber } from './Observer';
-import { applyCodeTab } from '../../utils/CodeViewer';
+import { applyCodeTab, highlightFunction } from '../../utils/CodeViewer';
 import sourceCode from './Observer.ts?raw';
 
 export class ObserverView {
@@ -76,6 +76,7 @@ export class ObserverView {
   private bindEvents() {
     const publishBtn = this.container.querySelector('#publish-btn');
     publishBtn?.addEventListener('click', () => {
+      highlightFunction(this.container, 'notify');
       this.log('最新のニュースレターを発行中...');
       this.publisher.notify('最新のアップデート情報！');
       this.playPublishAnimation();
@@ -105,9 +106,11 @@ export class ObserverView {
 
       card.addEventListener('click', () => {
         if (isActive) {
+          highlightFunction(this.container, 'unsubscribe');
           this.publisher.unsubscribe(sub);
           this.log(`購読を解除しました: ${sub.name}`);
         } else {
+          highlightFunction(this.container, 'subscribe');
           this.publisher.subscribe(sub);
           this.log(`購読を開始しました: ${sub.name}`);
         }

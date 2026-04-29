@@ -1,5 +1,5 @@
 import { HomeTheaterFacade } from './Facade';
-import { applyCodeTab } from '../../utils/CodeViewer';
+import { applyCodeTab, highlightFunction } from '../../utils/CodeViewer';
 import sourceCode from './Facade.ts?raw';
 
 export class FacadeView {
@@ -171,20 +171,18 @@ export class FacadeView {
     btnWatch?.addEventListener('click', async () => {
       btnWatch.disabled = true;
       btnEnd.disabled = true;
+      highlightFunction(this.container, 'watchMovie');
       this.log('--- ユーザーが「映画を観る」ボタンを押しました ---');
-      
       await this.facade.watchMovie('インセプション');
-      
       btnEnd.disabled = false;
     });
 
     btnEnd?.addEventListener('click', async () => {
       btnWatch.disabled = true;
       btnEnd.disabled = true;
+      highlightFunction(this.container, 'endMovie');
       this.log('--- ユーザーが「終了する」ボタンを押しました ---');
-      
       await this.facade.endMovie();
-      
       btnWatch.disabled = false;
     });
   }

@@ -1,5 +1,5 @@
 import { VendingMachine } from './State';
-import { applyCodeTab } from '../../utils/CodeViewer';
+import { applyCodeTab, highlightFunction } from '../../utils/CodeViewer';
 import sourceCode from './State.ts?raw';
 
 export class StateView {
@@ -104,14 +104,17 @@ export class StateView {
     };
 
     this.container.querySelector('#btn-coin')?.addEventListener('click', () => {
+      highlightFunction(this.container, 'insertCoin');
       this.machine.insertCoin();
     });
     
     this.container.querySelector('#btn-eject')?.addEventListener('click', () => {
+      highlightFunction(this.container, 'ejectCoin');
       this.machine.ejectCoin();
     });
     
     this.container.querySelector('#btn-push')?.addEventListener('click', () => {
+      highlightFunction(this.container, 'pressButton');
       this.machine.pressButton();
     });
   }

@@ -1,5 +1,5 @@
 import { Director, GamingComputerBuilder, OfficeComputerBuilder } from './Builder';
-import { applyCodeTab } from '../../utils/CodeViewer';
+import { applyCodeTab, highlightFunction } from '../../utils/CodeViewer';
 import sourceCode from './Builder.ts?raw';
 
 export class BuilderView {
@@ -146,7 +146,7 @@ export class BuilderView {
       
       const builder = type === 'gaming' ? new GamingComputerBuilder() : new OfficeComputerBuilder();
       this.director.setBuilder(builder);
-      
+      highlightFunction(this.container, 'constructComputer');
       this.log(`ディレクター: ${type === 'gaming' ? 'ゲーミングPC' : 'オフィスPC'} の構築を開始します。`);
       
       const chassis = this.container.querySelector('#pc-chassis') as HTMLElement;

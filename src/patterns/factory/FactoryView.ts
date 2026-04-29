@@ -1,6 +1,6 @@
 import { UIFactory, DarkThemeFactory, LightThemeFactory } from './Factory';
 import type { UIComponent } from './Factory';
-import { applyCodeTab } from '../../utils/CodeViewer';
+import { applyCodeTab, highlightFunction } from '../../utils/CodeViewer';
 import sourceCode from './Factory.ts?raw';
 
 export class FactoryView {
@@ -94,21 +94,19 @@ export class FactoryView {
 
     btnCreateBtn?.addEventListener('click', () => {
       const factory = getFactory();
+      highlightFunction(this.container, 'createButton');
       this.log(`${factory.constructor.name} に Button の製造を依頼しました...`);
-      
       const component = factory.createButton();
       this.log(`-> ${component.getType()} が製造されました！`);
-      
       this.renderProduct(component);
     });
 
     btnCreateInput?.addEventListener('click', () => {
       const factory = getFactory();
+      highlightFunction(this.container, 'createInput');
       this.log(`${factory.constructor.name} に Input の製造を依頼しました...`);
-      
       const component = factory.createInput();
       this.log(`-> ${component.getType()} が製造されました！`);
-      
       this.renderProduct(component);
     });
   }

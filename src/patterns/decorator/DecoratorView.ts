@@ -1,6 +1,6 @@
 import { SimpleCoffee, MilkDecorator, WhipCreamDecorator, CaramelSyrupDecorator } from './Decorator';
 import type { Coffee } from './Decorator';
-import { applyCodeTab } from '../../utils/CodeViewer';
+import { applyCodeTab, highlightFunction } from '../../utils/CodeViewer';
 import sourceCode from './Decorator.ts?raw';
 
 export class DecoratorView {
@@ -188,24 +188,28 @@ export class DecoratorView {
 
   private bindEvents() {
     this.container.querySelector('#btn-milk')?.addEventListener('click', () => {
+      highlightFunction(this.container, 'MilkDecorator');
       this.currentCoffee = new MilkDecorator(this.currentCoffee);
       this.log('デコレーター適用: ミルクを追加しました。');
       this.updateUI();
     });
 
     this.container.querySelector('#btn-whip')?.addEventListener('click', () => {
+      highlightFunction(this.container, 'WhipCreamDecorator');
       this.currentCoffee = new WhipCreamDecorator(this.currentCoffee);
       this.log('デコレーター適用: ホイップクリームを追加しました。');
       this.updateUI();
     });
 
     this.container.querySelector('#btn-caramel')?.addEventListener('click', () => {
+      highlightFunction(this.container, 'CaramelSyrupDecorator');
       this.currentCoffee = new CaramelSyrupDecorator(this.currentCoffee);
       this.log('デコレーター適用: キャラメルシロップを追加しました。');
       this.updateUI();
     });
 
     this.container.querySelector('#btn-reset')?.addEventListener('click', () => {
+      highlightFunction(this.container, 'SimpleCoffee');
       this.currentCoffee = new SimpleCoffee();
       this.log('リセット: シンプルなコーヒーに戻しました。');
       this.updateUI();

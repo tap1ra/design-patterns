@@ -1,5 +1,5 @@
 import { SettingsManager } from './Singleton';
-import { applyCodeTab } from '../../utils/CodeViewer';
+import { applyCodeTab, highlightFunction } from '../../utils/CodeViewer';
 import sourceCode from './Singleton.ts?raw';
 
 export class SingletonView {
@@ -99,6 +99,7 @@ export class SingletonView {
     const btnRefreshB = this.container.querySelector('#btn-refresh-b') as HTMLButtonElement;
 
     btnGetA.addEventListener('click', () => {
+      highlightFunction(this.container, 'getInstance');
       instanceA = SettingsManager.getInstance();
       this.log(`コンポーネントA: インスタンスを取得しました。(ID: ${instanceA.instanceId})`);
       this.updateInstanceInfo('instance-info-a', instanceA);
@@ -107,6 +108,7 @@ export class SingletonView {
     });
 
     btnGetB.addEventListener('click', () => {
+      highlightFunction(this.container, 'getInstance');
       instanceB = SettingsManager.getInstance();
       this.log(`コンポーネントB: インスタンスを取得しました。(ID: ${instanceB.instanceId})`);
       if (instanceA && instanceA === instanceB) {
@@ -118,6 +120,7 @@ export class SingletonView {
 
     btnDark.addEventListener('click', () => {
       if (instanceA) {
+        highlightFunction(this.container, 'setSetting');
         instanceA.setSetting('theme', 'dark');
         this.log('コンポーネントA: テーマを dark に変更しました。');
         this.updateInstanceInfo('instance-info-a', instanceA);
@@ -126,6 +129,7 @@ export class SingletonView {
 
     btnLight.addEventListener('click', () => {
       if (instanceA) {
+        highlightFunction(this.container, 'setSetting');
         instanceA.setSetting('theme', 'light');
         this.log('コンポーネントA: テーマを light に変更しました。');
         this.updateInstanceInfo('instance-info-a', instanceA);
@@ -134,6 +138,7 @@ export class SingletonView {
 
     btnRefreshB.addEventListener('click', () => {
       if (instanceB) {
+        highlightFunction(this.container, 'getSetting');
         this.log(`コンポーネントB: 設定を読み込みました -> テーマは ${instanceB.getSetting('theme')} です。`);
         this.updateInstanceInfo('instance-info-b', instanceB);
       }

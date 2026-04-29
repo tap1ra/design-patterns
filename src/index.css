@@ -115,7 +115,7 @@ body {
 
 /* Pattern Container (used by JS views) */
 .pattern-container {
-  max-width: 1000px;
+  max-width: 100%;
   margin: 0 auto;
   animation: fadeIn 0.4s ease-out;
 }
@@ -628,6 +628,35 @@ body {
   border-bottom-color: var(--primary-color);
 }
 
+/* ── Split wrapper ── */
+.split-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.split-wrapper .tab-panel {
+  min-width: 0;
+}
+
+/* 並列表示モード */
+.split-wrapper.is-split {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.split-wrapper.is-split .tab-panel[data-tab-id="demo"] {
+  flex: 1 1 55%;
+  min-width: 0;
+}
+
+.split-wrapper.is-split .tab-panel[data-tab-id="code"] {
+  flex: 0 0 43%;
+  min-width: 320px;
+  position: sticky;
+  top: 1rem;
+}
+
 .tab-panel {
   animation: fadeIn 0.25s ease-out;
 }
@@ -640,6 +669,10 @@ body {
   border: 1px solid var(--border-color);
   font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
   margin-top: 1.5rem;
+}
+
+.split-wrapper.is-split .code-viewer {
+  margin-top: 0;
 }
 
 .code-viewer-header {
@@ -659,23 +692,60 @@ body {
   letter-spacing: 0.08em;
 }
 
+.code-hint {
+  font-size: 0.7rem;
+  color: #475569;
+  font-family: var(--font-sans);
+}
+
 .code-content {
   padding: 1.25rem 0;
   overflow: auto;
   font-size: 0.82rem;
-  line-height: 1;
+  line-height: 1.0;
   color: #e2e8f0;
   margin: 0;
   max-height: 65vh;
 }
 
+/* 並列表示時はコードパネルを画面高さに合わせる */
+.split-wrapper.is-split .code-content {
+  max-height: calc(100vh - 260px);
+}
+
 .code-line {
   display: block;
   padding: 0 1.25rem;
+  border-left: 3px solid transparent;
+  transition: background 0.15s, border-color 0.15s;
 }
 
 .code-line:hover {
   background: rgba(255, 255, 255, 0.04);
+}
+
+/* アクティブハイライト */
+.code-line.hl-active {
+  background: rgba(59, 130, 246, 0.15);
+  border-left-color: #3b82f6;
+}
+
+.code-line.hl-active .line-num {
+  color: #60a5fa;
+}
+
+@keyframes hlPulse {
+  0% {
+    background: rgba(59, 130, 246, 0.35);
+  }
+
+  100% {
+    background: rgba(59, 130, 246, 0.15);
+  }
+}
+
+.code-line.hl-active {
+  animation: hlPulse 0.4s ease-out forwards;
 }
 
 .line-num {
@@ -686,6 +756,7 @@ body {
   text-align: right;
   margin-right: 1.5rem;
   font-size: 0.75rem;
+  transition: color 0.15s;
 }
 
 /* Syntax colors */

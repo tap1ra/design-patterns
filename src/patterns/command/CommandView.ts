@@ -1,5 +1,5 @@
 import { SmartLight, RemoteControl, TurnOnLightCommand, TurnOffLightCommand, DimLightCommand } from './Command';
-import { applyCodeTab } from '../../utils/CodeViewer';
+import { applyCodeTab, highlightFunction } from '../../utils/CodeViewer';
 import sourceCode from './Command.ts?raw';
 
 export class CommandView {
@@ -148,6 +148,7 @@ export class CommandView {
 
   private bindEvents() {
     this.container.querySelector('#btn-on')?.addEventListener('click', () => {
+      highlightFunction(this.container, 'executeCommand');
       this.log('ユーザー: 「電源 ON」コマンドを実行');
       this.remote.executeCommand(new TurnOnLightCommand(this.light));
       this.updateUI();
@@ -158,18 +159,21 @@ export class CommandView {
         this.log('エラー: 電源がオフの時は暗くできません。');
         return;
       }
+      highlightFunction(this.container, 'executeCommand');
       this.log('ユーザー: 「暗くする」コマンドを実行');
       this.remote.executeCommand(new DimLightCommand(this.light));
       this.updateUI();
     });
 
     this.container.querySelector('#btn-off')?.addEventListener('click', () => {
+      highlightFunction(this.container, 'executeCommand');
       this.log('ユーザー: 「電源 OFF」コマンドを実行');
       this.remote.executeCommand(new TurnOffLightCommand(this.light));
       this.updateUI();
     });
 
     this.container.querySelector('#btn-undo')?.addEventListener('click', () => {
+      highlightFunction(this.container, 'undoCommand');
       this.log('ユーザー: Undo（取り消し）を実行');
       const success = this.remote.undoCommand();
       if (success) {

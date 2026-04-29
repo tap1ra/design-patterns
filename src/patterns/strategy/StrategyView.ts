@@ -1,6 +1,6 @@
 import { ShoppingCart, CreditCardStrategy, HogePayStrategy, CryptoStrategy } from './Strategy';
 import type { PaymentStrategy } from './Strategy';
-import { applyCodeTab } from '../../utils/CodeViewer';
+import { applyCodeTab, highlightFunction } from '../../utils/CodeViewer';
 import sourceCode from './Strategy.ts?raw';
 
 export class StrategyView {
@@ -84,6 +84,7 @@ export class StrategyView {
         // Update Context
         if (strategyKey && this.strategies[strategyKey]) {
           this.cart.setStrategy(this.strategies[strategyKey]);
+          highlightFunction(this.container, 'setStrategy');
         }
       });
     });
@@ -109,6 +110,7 @@ export class StrategyView {
       `;
 
       try {
+        highlightFunction(this.container, 'checkout');
         const resultMsg = await this.cart.checkout(amount);
         
         // Update UI to success state
