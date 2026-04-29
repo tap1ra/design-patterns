@@ -2,6 +2,8 @@
 
 インタラクティブに学べるデザインパターンの可視化学習ツールです。TypeScriptとViteで構築されており、GoF（Gang of Four）の代表的なデザインパターンをブラウザ上で直感的に操作しながら学ぶことができます。
 
+# 本プロジェクトはGoogle Antigravityでどういったものが作成可能かを知るため、AIを用いて作成した学習用のサンプルですħ
+
 ## ✨ 特徴
 
 * **9つのデザインパターンを収録**: Observer, State, Strategy, Singleton, Factory, Command, Decorator, Builder, Facade を網羅。
